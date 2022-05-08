@@ -6,10 +6,14 @@ const { MONGODB_URI, MONGODB_DB_NAME } = config;
 
 const client = new MongoClient();
 
-await client.connect(MONGODB_URI);
+// Load envs from deployment or local env file
+const dbUri = Deno.env.get("MONGODB_URI") || MONGODB_URI;
+const dbName = Deno.env.get("MONGODB_DB_NAME") || MONGODB_DB_NAME;
 
-const db = client.database(MONGODB_DB_NAME);
+await client.connect(dbUri);
 
-console.log(`DB: ${MONGODB_DB_NAME} connected.`);
+const db = client.database(dbName);
+
+console.log(`DB: ${dbName} connected.`);
 
 export default db;
