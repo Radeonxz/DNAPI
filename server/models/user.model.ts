@@ -9,7 +9,7 @@ interface UserSchema {
   email: string;
   password: string;
   createdAt: Date;
-  homes: string[];
+  updatedAt: Date;
 }
 
 const UserModel = db.collection<UserSchema>("users");

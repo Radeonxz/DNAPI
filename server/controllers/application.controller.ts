@@ -2,7 +2,12 @@ import { ApplicationModel } from "../models/models.ts";
 
 const createApplication = async (applicationObj: any) => {
   const applicationId = crypto.randomUUID();
-  await ApplicationModel.insertOne({ ...applicationObj, applicationId });
+  const createdAt = new Date();
+  await ApplicationModel.insertOne({
+    ...applicationObj,
+    applicationId,
+    createdAt
+  });
   return applicationId;
 };
 
@@ -10,9 +15,10 @@ const updateApplicationById = async (
   applicationId: string,
   applicationObj: any
 ) => {
+  const updatedAt = new Date();
   const updatedUser = await ApplicationModel.updateOne(
     { applicationId },
-    { $set: { ...applicationObj } }
+    { $set: { ...applicationObj, updatedAt } }
   );
   return updatedUser;
 };

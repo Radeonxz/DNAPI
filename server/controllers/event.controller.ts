@@ -7,9 +7,10 @@ const createEvent = async (eventObj: any) => {
 };
 
 const updateEventById = async (eventId: string, eventObj: any) => {
+  const updatedAt = new Date();
   const updatedUser = await EventModel.updateOne(
     { eventId },
-    { $set: { ...eventObj } }
+    { $set: { ...eventObj, updatedAt } }
   );
   return updatedUser;
 };

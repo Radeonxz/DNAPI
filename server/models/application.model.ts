@@ -9,6 +9,7 @@ interface ApplicationSchema {
   appURL: string;
   description: string;
   createdAt: Date;
+  updatedAt: Date;
 }
 
 const ApplicationModel = db.collection<ApplicationSchema>("applications");

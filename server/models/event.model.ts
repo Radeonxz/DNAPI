@@ -10,6 +10,7 @@ interface EventSchema {
   path: string;
   host: string;
   createdAt: Date;
+  updatedAt: Date;
 }
 
 const EventModel = db.collection<EventSchema>("events");
