@@ -23,6 +23,11 @@ const updateApplicationById = async (
   return updatedUser;
 };
 
+const getAllApplications = async () => {
+  const applications = await ApplicationModel.find().toArray();
+  return applications;
+};
+
 const findApplicationById = async (applicationId: string) => {
   const application = await ApplicationModel.findOne({ applicationId });
   return application;
@@ -36,6 +41,7 @@ const deleteApplicationById = async (applicationId: string) => {
 export {
   createApplication,
   updateApplicationById,
+  getAllApplications,
   findApplicationById,
   deleteApplicationById
 };

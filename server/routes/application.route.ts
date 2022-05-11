@@ -7,6 +7,7 @@ import {
 import {
   createApplication,
   updateApplicationById,
+  getAllApplications,
   findApplicationById,
   deleteApplicationById
 } from "../controllers/controllers.ts";
@@ -32,6 +33,15 @@ applicationRouter.put("/:applicationId", async (ctx: any) => {
       applicationData
     );
     ctx.response.body = { ...application };
+  } catch (error) {
+    ctx.response.status = Status.NotFound;
+  }
+});
+
+applicationRouter.get("/", async (ctx: any) => {
+  try {
+    const applications = await getAllApplications();
+    ctx.response.body = applications;
   } catch (error) {
     ctx.response.status = Status.NotFound;
   }

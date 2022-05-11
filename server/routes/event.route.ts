@@ -7,6 +7,7 @@ import {
 import {
   createEvent,
   updateEventById,
+  getAllEventsByAppId,
   findEventById,
   deleteEventById
 } from "../controllers/controllers.ts";
@@ -30,6 +31,16 @@ eventRouter.put("/:eventId", async (ctx: any) => {
     const eventData = await ctx.request.body().value;
     const event = await updateEventById(eventId, eventData);
     ctx.response.body = { ...event };
+  } catch (error) {
+    ctx.response.status = Status.NotFound;
+  }
+});
+
+eventRouter.get("/:applicationId", async (ctx: any) => {
+  try {
+    const { applicationId } = helpers.getQuery(ctx, { mergeParams: true });
+    const events = await getAllEventsByAppId(applicationId);
+    ctx.response.body = events;
   } catch (error) {
     ctx.response.status = Status.NotFound;
   }
