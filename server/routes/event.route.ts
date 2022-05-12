@@ -36,10 +36,10 @@ eventRouter.put("/:eventId", async (ctx: any) => {
   }
 });
 
-eventRouter.get("/:applicationId", async (ctx: any) => {
+eventRouter.get("/all/:appId", async (ctx: any) => {
   try {
-    const { applicationId } = helpers.getQuery(ctx, { mergeParams: true });
-    const events = await getAllEventsByAppId(applicationId);
+    const { appId } = helpers.getQuery(ctx, { mergeParams: true });
+    const events = await getAllEventsByAppId(appId);
     ctx.response.body = events;
   } catch (error) {
     ctx.response.status = Status.NotFound;

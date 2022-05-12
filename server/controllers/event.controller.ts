@@ -2,7 +2,8 @@ import { EventModel } from "../models/models.ts";
 
 const createEvent = async (eventObj: any) => {
   const eventId = crypto.randomUUID();
-  await EventModel.insertOne({ ...eventObj, eventId });
+  const createdAt = new Date();
+  await EventModel.insertOne({ ...eventObj, eventId, createdAt });
   return eventId;
 };
 
@@ -16,7 +17,7 @@ const updateEventById = async (eventId: string, eventObj: any) => {
 };
 
 const getAllEventsByAppId = async (appId: string) => {
-  const events = await EventModel.find({ applicationId: appId }).toArray();
+  const events = await EventModel.find({ appId }).toArray();
   return events;
 };
 

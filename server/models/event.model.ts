@@ -9,6 +9,7 @@ interface EventSchema {
   appId: string;
   path: string;
   host: string;
+  tag: string;
   createdAt: Date;
   updatedAt: Date;
 }
